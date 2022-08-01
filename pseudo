@@ -1,0 +1,78 @@
+
+
+
+
+
+class Node
+{
+	constructor(data)
+	{
+		this.key = data;
+		this.child = []
+	}
+};
+
+
+function numberOfChildren(root, x)
+{
+	var numChildren = 0;
+
+	if (root == null)
+		return 0;
+
+	// Creating a queue and pushing the root
+	var q = [];
+	q.push(root);
+
+	while (q.length != 0)
+	{
+		var n = q.length;
+
+		// If this node has children
+		while (n > 0)
+		{
+
+			
+			// check if it is equal to x
+			// If YES, then return number of children
+			var p = q[0];
+			q.shift();
+			if (p.key == x)
+			{
+				numChildren = numChildren +
+							p.child.length;
+				return numChildren;
+			}
+
+			
+			for (var i = 0; i < p.child.length; i++)
+				q.push(p.child[i]);
+			n--;
+		}
+	}
+	return numChildren;
+}
+// Creating a generic tree
+var root = new Node(20);
+(root.child).push(new Node(2));
+(root.child).push(new Node(34));
+(root.child).push(new Node(50));
+(root.child).push(new Node(60));
+(root.child).push(new Node(70));
+(root.child[0].child).push(new Node(15));
+(root.child[0].child).push(new Node(20));
+(root.child[1].child).push(new Node(30));
+(root.child[2].child).push(new Node(40));
+(root.child[2].child).push(new Node(100));
+(root.child[2].child).push(new Node(20));
+(root.child[0].child[1].child).push(new Node(25));
+(root.child[0].child[1].child).push(new Node(50));
+
+
+// children is to be calculated
+var x = 50;
+
+document.write(numberOfChildren(root, x));
+
+// This code is contributed by itsok.
+
