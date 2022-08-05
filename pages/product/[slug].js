@@ -106,13 +106,14 @@ return {paths, fallback:'blocking'}
 }
 
 //this time we used getStaticProps function..this one is used to pre-render data/page at build time so as data that is needed
-//is already availabel ahead of user request. 
+//is already available ahead of user request. 
 //poi use this only if the data you fetching is already available at build time. keyword "static"
 export const getStaticProps = async ({params: {slug}}) => {
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
+    const query2 = `*[_type in ["cases","product"] && slug.current == '${slug}'][0]`;
     const productsQuery = '*[_type == "product"]';
 
-    const product = await client.fetch(query);//fetching a specific data
+    const product = await client.fetch(query2);//fetching a specific data
     const products = await client.fetch(productsQuery); //fetching all data
     
     console.log(product);

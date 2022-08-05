@@ -14,7 +14,7 @@ const Navbar = () => {
       <p className='logo'>
         <Link href="/">KS Store</Link>
       </p>
-
+{/* <p> <Link href="/cases">cases</Link></p> */}
       <button type="button" className="cart-icon" onClick={()=> setShowCart(true)} >
         <AiOutlineShopping/>
         <span className='cart-item-qty'>{totalQuantities}</span>
